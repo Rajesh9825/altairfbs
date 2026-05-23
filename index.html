@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altair Food & Beverage Pvt. Ltd | Purity You Trust</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- Base Styles & Color Palette --- */
+        :root {
+            --primary-blue: #0d3b8e; 
+            --secondary-blue: #1558d6; 
+            --text-dark: #202b3c;
+            --text-gray: #5a6678;
+            --white: #ffffff;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* --- Global Container --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 40px;
+        }
+
+        /* --- Header Navigation (Desktop) --- */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            height: 100px;
+            position: relative;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%; 
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo-container {
+            transition: opacity 0.3s ease; /* Smooth fade for mobile menu toggle */
+        }
+
+        .logo-container img {
+            height: 80px;
+            width: auto;
+            margin-top: 0px;
+        }
+
+        .divider-line {
+            width: 1px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.3);
+            margin: 0 30px;
+        }
+
+        .desktop-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .desktop-nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .desktop-nav ul li a:hover {
+            color: #b3d4ff;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            text-decoration: none;
+            width: 35px;
+            height: 35px;
+            border: 1px solid var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--white);
+            color: var(--primary-blue);
+            transform: scale(1.1);
+        }
+
+        /* --- Mobile Navigation Elements (Hidden on Desktop) --- */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed; 
+            top: 100px; 
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 100px); 
+            background-color: var(--primary-blue);
+            padding: 40px 20px;
+            flex-direction: column;
+            align-items: center;
+            z-index: 99;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu-logo {
+            display: none; /* Hidden on desktop */
+        }
+
+        .mobile-menu nav {
+            width: 100%;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+            padding: 0;
+        }
+
+        .mobile-menu ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 28px; 
+            display: block;
+        }
+
+        .mobile-distributor-btn {
+            background-color: var(--white);
+            color: var(--primary-blue) !important;
+            padding: 15px 30px;
+            border-radius: 30px;
+            display: inline-block !important;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .mobile-distributor-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .mobile-socials {
+            display: flex;
+            gap: 25px;
+            margin-top: auto; 
+            margin-bottom: 20px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            width: 80%;
+            justify-content: center;
+        }
+
+        .mobile-socials a {
+            background-color: var(--white);
+            border: none;
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+        }
+
+        .mobile-socials a.fb-icon { color: #1877F2; }
+        .mobile-socials a.ig-icon { color: #E1306C; }
+        .mobile-socials a.loc-icon { color: #EA4335; }
+
+        .mobile-socials a:hover {
+            background-color: var(--white); 
+            transform: scale(1.1);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            background: url('images/webpage-BG1.png') no-repeat center center;
+            background-color: #88cafb;
+            background-size: cover; 
+            min-height: 85vh;
+            position: relative;
+            padding-top: 40px; 
+        }
+
+        .hero-content {
+            max-width: 480px;
+            z-index: 2;
+            margin-left: 10px; 
+            margin-top: -130px; 
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            color: var(--primary-blue);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background-color: #3fb4e9;
+            margin-bottom: 25px;
+            border-radius: 2px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-blue);
+            color: var(--white);
+            border: none;
+            box-shadow: 0 4px 10px rgba(21, 88, 214, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #0d44b3;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(21, 88, 214, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(13, 59, 142, 0.2);
+        }
+
+        /* --- Footer Section --- */
+        footer {
+            background-color: #88cafb; 
+            padding-top: 60px; 
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr; /* Updated to 4 columns to fit Quick Links and wide address */
+            gap: 30px;
+            margin-bottom: 40px;
+            padding-left: 60px; 
+        }
+
+        .footer-column h4 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .mobile-toggle-icon {
+            display: none;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            color: var(--text-dark);
+        }
+
+        .footer-column ul li a {
+            color: var(--text-dark); 
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--white); 
+        }
+
+        .footer-column ul li i {
+            color: var(--primary-blue); 
+            margin-right: 8px;
+            font-size: 12px;
+        }
+        
+        /* New Styles Specific to the Contact Column */
+        .contact-col ul li {
+            align-items: flex-start;
+            line-height: 1.6;
+        }
+        
+        .contact-col ul li i {
+            margin-top: 5px; /* Aligns icon with the top line of text */
+        }
+        
+        .contact-col strong {
+            color: var(--primary-blue);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-socials a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            transform: scale(1.15);
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .footer-bottom {
+            background-color: #0c70b1; 
+            color: var(--white); 
+            text-align: center;
+            padding: 20px 0;
+            font-size: 14px;
+            width: 100%;
+        }
+        
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 900px) {
+            .desktop-nav, .divider-line, .social-icons.desktop-only {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            /* Show and style the logo inside the mobile menu */
+            .mobile-menu-logo {
+                display: block;
+                height: 150px;
+                width: auto;
+                margin-bottom: 40px; /* Gap between logo and "About Us" */
+            }
+
+            /* Adjust gap between menu links */
+            .mobile-menu ul {
+                gap: 45px; 
+            }
+
+            /* Push the distributor button away from the links */
+            .mobile-distributor-btn {
+                margin-top: 30px !important;
+            }
+
+            .hero {
+                background: url('images/Mobile_BG1.png') no-repeat center bottom;
+                background-size: cover;
+                background-color: #88cafb;
+                background-position-y: 0%;
+                align-items: flex-start;
+                padding-top: 60px;
+                min-height: 90vh;
+            }
+
+            .hero-content {
+                margin-left: 0;
+                margin-top: 0;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-content h1 {
+                font-size: 60px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                width: 60%;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+
+            /* Mobile Footer Accordion Layout */
+            .footer-grid {
+                padding-left: 0;
+                grid-template-columns: 1fr;
+                gap: 0; 
+            }
+
+            .footer-column.accordion {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+                padding: 15px 10px;
+            }
+
+            .footer-column.accordion h4 {
+                margin-bottom: 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .mobile-toggle-icon {
+                display: block;
+                transition: transform 0.3s ease;
+            }
+
+            .footer-column.accordion ul {
+                display: none;
+                padding-top: 15px;
+            }
+
+            .footer-column.accordion.active ul {
+                display: block;
+            }
+
+            .footer-column.accordion.active .mobile-toggle-icon {
+                transform: rotate(180deg);
+            }
+
+            .footer-column ul li {
+                justify-content: flex-start; 
+            }
+            
+            .footer-column.no-accordion {
+                padding: 30px 10px;
+                text-align: center;
+            }
+            
+            .footer-column.no-accordion h4 {
+                display: block;
+            }
+
+            .footer-socials {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <div class="logo-container header-logo">
+                <a href="index.html">
+                    <img src="images/Altair-Final-Logo.png" alt="Altair White Logo">
+                </a>
+            </div>
+            <div class="divider-line"></div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Our Products</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="social-icons desktop-only">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Location"><i class="fa-solid fa-location-dot"></i></a>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileToggle" aria-label="Open Mobile Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <img src="images/Altair-Final-Logo.png" alt="Altair Logo" class="mobile-menu-logo">
+            
+            <nav>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Our Products</a></li>
+                    <li><a href="distributor.html" class="mobile-distributor-btn">Become Distributor</a></li>
+                </ul>
+            </nav>
+            
+            <div class="social-icons mobile-socials">
+                <a href="#" class="fb-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="ig-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="loc-icon" aria-label="Location"><i class="fa-solid fa-location-dot"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Purity you trust</h1>
+                <div class="accent-line"></div>
+                <p>Altair is committed to purity, quality, <br> and refreshment in every drop.</p>
+                
+                <div class="button-group">
+                    <a href="products.html" class="btn btn-primary">
+                        <i class="fa-solid fa-droplet"></i> Explore Products
+                    </a>
+                    <a href="distributor.html" class="btn btn-secondary">
+                        <i class="fa-solid fa-user-group"></i> Become Distributor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column accordion">
+                    <h4>Quick Links <i class="fa-solid fa-chevron-down mobile-toggle-icon"></i></h4>
+                    <ul>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="index.html">Home</a></li>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="about.html">About Us</a></li>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="products.html">Our Products</a></li>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="distributor.html">Become Distributor</a></li>
+                    </ul>
+                </div>
+
+                
+                
+                <div class="footer-column accordion contact-col">
+                    <h4>Contact <i class="fa-solid fa-chevron-down mobile-toggle-icon"></i></h4>
+                    <ul>
+                        <li>
+                            <div>
+                                <strong>Company Address:</strong>
+                                Office No 646 P.S Abacus NH12 Action Area 2E, New Town Kolkata(700161)
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Factory Address:</strong>
+                                Panpur Narayanpur Kakinara(Kalyani Expressway)opposite substation WBSIDCL, West Bengal 743126
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i> 
+                            <a href="tel:9004234955">9004234955</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i> 
+                            <a href="mailto:info@altairfb.com">info@altairfb.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-column accordion">
+                    <h4>Legal <i class="fa-solid fa-chevron-down mobile-toggle-icon"></i></h4>
+                    <ul>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Privacy Policy</a></li>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Terms & Conditions</a></li>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Cancellation & Refund Policy</a></li>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column no-accordion">
+                    <h4>Follow Us</h4>
+                    <div class="footer-socials">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-solid fa-location-dot"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            &copy; 2026 Altair Food & Beverage Pvt. Ltd. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Navbar Logic
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const icon = mobileToggle.querySelector('i');
+        const headerLogo = document.querySelector('.header-logo');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+                document.body.style.overflow = 'hidden';
+                headerLogo.style.opacity = '0'; // Smoothly hides the top-left header logo
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+                headerLogo.style.opacity = '1'; // Brings back the top-left header logo
+            }
+        });
+
+        // Close menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+                headerLogo.style.opacity = '1';
+            });
+        });
+
+        // Mobile Footer Accordion Logic
+        const footerAccordions = document.querySelectorAll('.footer-column.accordion h4');
+        footerAccordions.forEach(accordion => {
+            accordion.addEventListener('click', () => {
+                const parentColumn = accordion.parentElement;
+                parentColumn.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
