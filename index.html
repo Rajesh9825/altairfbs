@@ -29,6 +29,16 @@
             color: var(--text-dark);
             background-color: var(--white);
             overflow-x: hidden;
+            /* Prevents overscroll glitch */
+            overscroll-behavior: none; 
+        }
+
+        /* Helper class applied by JS when menu is open */
+        body.menu-open {
+            overflow: hidden;
+            height: 100vh;
+            position: fixed;
+            width: 100%;
         }
 
         /* --- Global Container --- */
@@ -59,7 +69,7 @@
         }
 
         .logo-container {
-            transition: opacity 0.3s ease; /* Smooth fade for mobile menu toggle */
+            transition: opacity 0.3s ease; 
         }
 
         .logo-container img {
@@ -141,6 +151,8 @@
             align-items: center;
             z-index: 99;
             overflow-y: auto;
+            /* Ensures menu itself scrolls while body stays locked */
+            -webkit-overflow-scrolling: touch;
         }
 
         .mobile-menu.active {
@@ -148,7 +160,7 @@
         }
 
         .mobile-menu-logo {
-            display: none; /* Hidden on desktop */
+            display: none; 
         }
 
         .mobile-menu nav {
@@ -220,7 +232,7 @@
         .hero {
             display: flex;
             align-items: center;
-            background: url('images/webpage-BG1.webp') no-repeat center center;
+            background: url('images/webpage-BG1.png') no-repeat center center;
             background-color: #88cafb;
             background-size: cover; 
             min-height: 85vh;
@@ -310,7 +322,7 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr 1fr 1fr; /* Updated to 4 columns to fit Quick Links and wide address */
+            grid-template-columns: 1fr 2fr 1fr 1fr; 
             gap: 30px;
             margin-bottom: 40px;
             padding-left: 60px; 
@@ -356,14 +368,13 @@
             font-size: 12px;
         }
         
-        /* New Styles Specific to the Contact Column */
         .contact-col ul li {
             align-items: flex-start;
             line-height: 1.6;
         }
         
         .contact-col ul li i {
-            margin-top: 5px; /* Aligns icon with the top line of text */
+            margin-top: 5px;
         }
         
         .contact-col strong {
@@ -414,31 +425,28 @@
                 display: block;
             }
             
-            /* Show and style the logo inside the mobile menu */
             .mobile-menu-logo {
                 display: block;
                 height: 150px;
                 width: auto;
-                margin-bottom: 40px; /* Gap between logo and "About Us" */
+                margin-bottom: 40px;
             }
 
-            /* Adjust gap between menu links */
             .mobile-menu ul {
                 gap: 45px; 
             }
 
-            /* Push the distributor button away from the links */
             .mobile-distributor-btn {
                 margin-top: 30px !important;
             }
 
             .hero {
-                background: url('images/Mobile_BG1.webp') no-repeat center bottom;
+                background: url('images/Mobile_BG1.png') no-repeat center bottom;
                 background-size: cover;
                 background-color: #88cafb;
                 background-position-y: 0%;
                 align-items: flex-start;
-                padding-top: 20px;
+                padding-top: 60px;
                 min-height: 90vh;
             }
 
@@ -452,19 +460,18 @@
             }
 
             .hero-content h1 {
-                font-size: 36px;
+                font-size: 60px;
             }
 
             .button-group {
                 flex-direction: column;
-                width: 70%;
+                width: 60%;
             }
 
             .btn {
                 justify-content: center;
             }
 
-            /* Mobile Footer Accordion Layout */
             .footer-grid {
                 padding-left: 0;
                 grid-template-columns: 1fr;
@@ -528,7 +535,7 @@
         <div class="header-left">
             <div class="logo-container header-logo">
                 <a href="index.html">
-                    <img src="images/Altair-Final-Logo.webp" alt="Altair White Logo">
+                    <img src="images/Altair-Final-Logo.png" alt="Altair White Logo">
                 </a>
             </div>
             <div class="divider-line"></div>
@@ -551,7 +558,7 @@
         </button>
 
         <div class="mobile-menu" id="mobileMenu">
-            <img src="images/Altair-Final-Logo.webp" alt="Altair Logo" class="mobile-menu-logo">
+            <img src="images/Altair-Final-Logo.png" alt="Altair Logo" class="mobile-menu-logo">
             
             <nav>
                 <ul>
@@ -601,7 +608,15 @@
                     </ul>
                 </div>
 
-                
+                <div class="footer-column accordion">
+                    <h4>Legal <i class="fa-solid fa-chevron-down mobile-toggle-icon"></i></h4>
+                    <ul>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Privacy Policy</a></li>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Terms & Conditions</a></li>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Cancellation & Refund Policy</a></li>
+                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">FAQs</a></li>
+                    </ul>
+                </div>
                 
                 <div class="footer-column accordion contact-col">
                     <h4>Contact <i class="fa-solid fa-chevron-down mobile-toggle-icon"></i></h4>
@@ -629,16 +644,6 @@
                     </ul>
                 </div>
 
-                <div class="footer-column accordion">
-                    <h4>Legal <i class="fa-solid fa-chevron-down mobile-toggle-icon"></i></h4>
-                    <ul>
-                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Privacy Policy</a></li>
-                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Terms & Conditions</a></li>
-                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">Cancellation & Refund Policy</a></li>
-                        <li><i class="fa-solid fa-chevron-right"></i> <a href="#">FAQs</a></li>
-                    </ul>
-                </div>
-
                 <div class="footer-column no-accordion">
                     <h4>Follow Us</h4>
                     <div class="footer-socials">
@@ -656,7 +661,6 @@
     </footer>
 
     <script>
-        // Mobile Menu Navbar Logic
         const mobileToggle = document.getElementById('mobileToggle');
         const mobileMenu = document.getElementById('mobileMenu');
         const icon = mobileToggle.querySelector('i');
@@ -669,28 +673,28 @@
             if (mobileMenu.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-xmark');
-                document.body.style.overflow = 'hidden';
-                headerLogo.style.opacity = '0'; // Smoothly hides the top-left header logo
+                // Apply menu-open class to body to lock scroll
+                document.body.classList.add('menu-open');
+                headerLogo.style.opacity = '0';
             } else {
                 icon.classList.remove('fa-xmark');
                 icon.classList.add('fa-bars');
-                document.body.style.overflow = '';
-                headerLogo.style.opacity = '1'; // Brings back the top-left header logo
+                // Remove menu-open class
+                document.body.classList.remove('menu-open');
+                headerLogo.style.opacity = '1';
             }
         });
 
-        // Close menu on link click
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
                 icon.classList.remove('fa-xmark');
                 icon.classList.add('fa-bars');
-                document.body.style.overflow = '';
+                document.body.classList.remove('menu-open');
                 headerLogo.style.opacity = '1';
             });
         });
 
-        // Mobile Footer Accordion Logic
         const footerAccordions = document.querySelectorAll('.footer-column.accordion h4');
         footerAccordions.forEach(accordion => {
             accordion.addEventListener('click', () => {
